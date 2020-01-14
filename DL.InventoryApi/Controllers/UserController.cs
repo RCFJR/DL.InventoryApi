@@ -13,24 +13,16 @@ namespace DL.InventoryApi.Controllers
     public class UserController : ApiController
     {
         // GET: api/User
-        public string Get()
+        public IEnumerable<User> Get()
         {
             var _users = UserCommon.GetInstance().Get(new User() { });
-
-            if (_users == null)
-                return "nulo";
-            else if (_users.Count == 0)
-                return "igual a zero";
-            else
-                return "maior que zero";
-            //return _users;
+            return _users;
         }
 
         // GET: api/User/5
         public IEnumerable<User> Get(int id)
         {
             var _users = UserCommon.GetInstance().Get(new User() { id_user = id });
-
             return _users;
         }
 

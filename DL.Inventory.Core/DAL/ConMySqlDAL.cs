@@ -48,9 +48,9 @@ namespace DL.Inventory.Core.DAL
 
                 retornoObj = retornoBancoMapeado;
             }
-            catch(Exception ex)
+            catch
             {
-                LogFile.GetInstance().Log(ex);
+
             }
             finally
             {

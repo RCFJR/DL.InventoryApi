@@ -21,7 +21,7 @@ namespace DL.Inventory.Core.Data
         #region Methods
         public IList<User> Get()
         {
-            string dbBase = DbBase.DbBase.GetInstance().GetAll(new User()); 
+            string dbBase = DbBase.DbBase.GetInstance().GetAll(new User());
             IList<User> response = ConMySqlDAL<User>.Instance.ExecuteSQL(dbBase);
             return response;
         }
