@@ -73,10 +73,13 @@
     <Compile Include="DAL\ConMySqlDAL.cs" />
     <Compile Include="DAL\ConSqlServerDAL.cs" />
     <Compile Include="DAL\MapaDAL.cs" />
+    <Compile Include="Data\Base\DeviceBase.cs" />
     <Compile Include="Data\Base\ExempleBase.cs" />
     <Compile Include="Data\Base\UserBase.cs" />
+    <Compile Include="Data\Commun\DeviceCommon.cs" />
     <Compile Include="Data\Commun\UserCommon.cs" />
     <Compile Include="Data\Commun\ExempleCommon.cs" />
+    <Compile Include="Model\Device.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\Exemple.cs" />
     <Compile Include="Model\_MapperTO.cs" />

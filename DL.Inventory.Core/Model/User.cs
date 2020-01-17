@@ -25,5 +25,10 @@ namespace DL.Inventory.Core.Model
         [_MapperTO("PASSWORD")]
         public string password { get; set; }
 
+        [_MapperTO("FACEID")]
+        public string faceid { get; set; }
+
+        [_MapperTO("TOUCHID")]
+        public string touchid { get; set; }
     }
 }
