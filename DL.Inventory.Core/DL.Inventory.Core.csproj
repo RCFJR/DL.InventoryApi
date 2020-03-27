@@ -68,7 +68,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="DAL\BaseDAL.cs" />
     <Compile Include="DAL\ConMySqlDAL.cs" />
     <Compile Include="DAL\ConSqlServerDAL.cs" />
@@ -84,8 +83,10 @@
     <Compile Include="Model\Exemple.cs" />
     <Compile Include="Model\_MapperTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\Cripto.cs" />
     <Compile Include="Util\LeitorConfig.cs" />
     <Compile Include="Util\LogFile.cs" />
+    <Compile Include="Util\Password.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -30,5 +30,17 @@ namespace DL.Inventory.Core.Model
 
         [_MapperTO("TOUCHID")]
         public string touchid { get; set; }
+
+        [_MapperTO("ACTIVE")]
+        public string active { get; set; }
+
+        [_MapperTO("ATTEMPTS")]
+        public int attempts { get; set; }
+
+        [_MapperTO("BLOCKED")]
+        public string blocked { get; set; }
+
+        [_MapperTO("PROFILE_ID")]
+        public int profile_id { get; set; }
     }
 }
