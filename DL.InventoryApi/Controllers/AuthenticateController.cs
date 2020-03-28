@@ -41,11 +41,11 @@ namespace DL.InventoryApi.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public HttpResponseMessage Encrypt(string password)
+        public HttpResponseMessage Encrypt(User user)
         {
             try
             {
-                string _hash = Cripto.GetHash(password);
+                string _hash = Cripto.GetHash(user.password);
                 var response = Request.CreateResponse<String>(System.Net.HttpStatusCode.OK, _hash);
                 return response;
             }
@@ -78,6 +78,76 @@ namespace DL.InventoryApi.Controllers
                 return response;
             }
 
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public HttpResponseMessage Login(User user)
+        {
+            try
+            {
+                User _user = UserCommon.GetInstance().Get(new User() { email = user.email }).FirstOrDefault();
+                if(_user != null)
+                {
+                    if(_user.password.Equals(Cripto.GetHash(user.password)))
+                    {
+                        IncorrectAttempt(_user, true);
+                        var response = Request.CreateResponse<User>(System.Net.HttpStatusCode.OK, _user);
+                        return response;
+                    }
+                    else
+                    {
+                        if(_user.attempts == 1)
+                        {
+                            IncorrectAttempt(_user, false);
+                            var response = Request.CreateResponse<String>(System.Net.HttpStatusCode.OK, "Senha incorreta! O cadastro será bloqueado na próxima tentativa errada.");
+                            return response;
+                        }
+                        else if(_user.attempts >= 2)
+                        {
+                            IncorrectAttempt(_user, false);
+                            var response = Request.CreateResponse<String>(System.Net.HttpStatusCode.OK, "Senha incorreta! O cadastro está bloqueado.");
+                            return response;
+                        }
+                        else
+                        {
+                            IncorrectAttempt(_user, false);
+                            var response = Request.CreateResponse<String>(System.Net.HttpStatusCode.OK, "Senha incorreta!");
+                            return response;
+                        }
+                    }
+                }
+                else
+                {
+                    var response = Request.CreateResponse<String>(System.Net.HttpStatusCode.OK, "Usuário não encontrado");
+                    return response;
+                }
+
+            }
+            catch
+            {
+                var response = Request.CreateResponse<String>(System.Net.HttpStatusCode.InternalServerError, "error");
+                return response;
+            }
+
+        }
+
+        private void IncorrectAttempt (User user, bool reset)
+        {
+            if (!reset)
+            {
+                user.attempts = user.attempts + 1;
+
+                if (user.attempts >= 3)
+                    user.blocked = "SIM";
+
+                UserCommon.GetInstance().Update(user);
+            }
+            else
+            {
+                user.attempts = 0;
+                UserCommon.GetInstance().Update(user);
+            }
         }
 
     }
