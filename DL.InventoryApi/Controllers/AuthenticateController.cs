@@ -68,7 +68,9 @@ namespace DL.InventoryApi.Controllers
                 _user.password = Cripto.GetHash(_newPassword);
 
                 UserCommon.GetInstance().Update(_user);
-                // Envia nova senha por e-mail
+                string body = EmailTemplate.ResetPassword(_user.username, _newPassword);
+                Email email = new Email() { recipient = _user.email, subject = "Recuperação de Senha", body = body };
+                Mail.Send(email);
                 var response = Request.CreateResponse<String>(System.Net.HttpStatusCode.OK, "Uma nova senha foi encaminhada por e-mail");
                 return response;
             }

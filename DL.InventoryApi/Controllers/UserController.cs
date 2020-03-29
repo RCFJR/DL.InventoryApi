@@ -35,10 +35,17 @@ namespace DL.InventoryApi.Controllers
         {
             UserCommon.GetInstance().Update(user);
         }
-
+        
         public void Delete(User user)
         {
             UserCommon.GetInstance().Delete(user);
+        }
+
+        public void Unlock(User user)
+        {
+            user.blocked = "NAO";
+            user.attempts = 0;
+            UserCommon.GetInstance().Update(user);
         }
     }
 }

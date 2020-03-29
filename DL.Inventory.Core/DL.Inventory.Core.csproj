@@ -33,6 +33,9 @@
     <Reference Include="DbBase, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\db-core-base-sql-generator.2.0.0\lib\net461\DbBase.dll</HintPath>
     </Reference>
+    <Reference Include="EASendMail, Version=7.6.0.2, Culture=neutral, PublicKeyToken=88adb80ecd66540b, processorArchitecture=MSIL">
+      <HintPath>..\packages\EASendMail.7.6.0.2\lib\net461\EASendMail.dll</HintPath>
+    </Reference>
     <Reference Include="MySqlConnector, Version=0.61.0.0, Culture=neutral, PublicKeyToken=d33d3e53aa5f8c92, processorArchitecture=MSIL">
       <HintPath>..\packages\MySqlConnector.0.61.0\lib\net461\MySqlConnector.dll</HintPath>
     </Reference>
@@ -74,18 +77,24 @@
     <Compile Include="DAL\MapaDAL.cs" />
     <Compile Include="Data\Base\DeviceBase.cs" />
     <Compile Include="Data\Base\ExempleBase.cs" />
+    <Compile Include="Data\Base\LogBase.cs" />
     <Compile Include="Data\Base\UserBase.cs" />
     <Compile Include="Data\Commun\DeviceCommon.cs" />
+    <Compile Include="Data\Commun\LogCommon.cs" />
     <Compile Include="Data\Commun\UserCommon.cs" />
     <Compile Include="Data\Commun\ExempleCommon.cs" />
     <Compile Include="Model\Device.cs" />
+    <Compile Include="Model\Email.cs" />
+    <Compile Include="Model\Log.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\Exemple.cs" />
     <Compile Include="Model\_MapperTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\Cripto.cs" />
+    <Compile Include="Util\EmailTemplate.cs" />
     <Compile Include="Util\LeitorConfig.cs" />
     <Compile Include="Util\LogFile.cs" />
+    <Compile Include="Util\Mail.cs" />
     <Compile Include="Util\Password.cs" />
   </ItemGroup>
   <ItemGroup>
