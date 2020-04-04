@@ -42,5 +42,8 @@ namespace DL.Inventory.Core.Model
 
         [_MapperTO("PROFILE_ID")]
         public int profile_id { get; set; }
+
+        [_MapperTO("CHANGE_PASSWORD")]
+        public int change_password { get; set; }
     }
 }

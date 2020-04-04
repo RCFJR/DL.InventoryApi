@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -7,6 +8,7 @@ using System.Web.Http;
 using DL.Inventory.Core;
 using DL.Inventory.Core.Data;
 using DL.Inventory.Core.Model;
+using DL.Inventory.Core.Util;
 
 namespace DL.InventoryApi.Controllers
 {
@@ -19,16 +21,56 @@ namespace DL.InventoryApi.Controllers
             return _users;
         }
 
-        // GET: api/User/5
-        public IEnumerable<User> Get(int id)
+        [HttpPost]
+        [AllowAnonymous]
+        public HttpResponseMessage Get(User user)
         {
-            var _users = UserCommon.GetInstance().Get(new User() { id_user = id });
-            return _users;
+            try
+            {
+                if(user.id_user > 0)
+                {
+                    var _user = UserCommon.GetInstance().Get(new User() { id_user = user.id_user }).FirstOrDefault() ;
+                    var response = Request.CreateResponse<User>(System.Net.HttpStatusCode.OK, _user);
+                    return response;
+                }
+                else
+                {
+                    var _users = UserCommon.GetInstance().Get(new User() { });
+                    var response = Request.CreateResponse<IList<User>>(System.Net.HttpStatusCode.OK, _users);
+                    return response;
+                }
+            }
+            catch
+            {
+                var response = Request.CreateResponse<String>(System.Net.HttpStatusCode.InternalServerError, "error");
+                return response;
+            }
+
         }
 
-        public void Create(User user)
+        [HttpPost]
+        [AllowAnonymous]
+        public HttpResponseMessage Create(User user)
         {
-            UserCommon.GetInstance().Create(user);
+            try
+            {
+                string _newPassword = Password.Create();
+                user.password = Cripto.GetHash(_newPassword);
+                user.change_password = 1;
+
+                UserCommon.GetInstance().Create(user);
+                string body = EmailTemplate.NewUser(user.username, _newPassword);
+                Email email = new Email() { recipient = user.email, subject = "Cadastro no sistema", body = body };
+                Mail.Send(email);
+                var response = Request.CreateResponse<String>(System.Net.HttpStatusCode.OK, "Usuário cadastrado, uma senha de acesso foi enviada por e-mail");
+                return response;
+            }
+            catch
+            {
+                var response = Request.CreateResponse<String>(System.Net.HttpStatusCode.InternalServerError, "error");
+                return response;
+            }
+
         }
 
         public void Update(User user)
@@ -43,9 +85,10 @@ namespace DL.InventoryApi.Controllers
 
         public void Unlock(User user)
         {
-            user.blocked = "NAO";
-            user.attempts = 0;
-            UserCommon.GetInstance().Update(user);
+            var _user = UserCommon.GetInstance().Get(user).FirstOrDefault();
+            _user.blocked = "NAO";
+            _user.attempts = 0;
+            UserCommon.GetInstance().Update(_user);
         }
     }
 }

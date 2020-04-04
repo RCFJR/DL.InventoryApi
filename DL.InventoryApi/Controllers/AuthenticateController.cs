@@ -64,15 +64,25 @@ namespace DL.InventoryApi.Controllers
             try
             {
                 User _user = UserCommon.GetInstance().Get(user).FirstOrDefault();
-                string _newPassword = Password.Create();
-                _user.password = Cripto.GetHash(_newPassword);
+                if(!_user.blocked.Equals("SIM"))
+                {
+                    string _newPassword = Password.Create();
+                    _user.password = Cripto.GetHash(_newPassword);
+                    _user.change_password = 1;
 
-                UserCommon.GetInstance().Update(_user);
-                string body = EmailTemplate.ResetPassword(_user.username, _newPassword);
-                Email email = new Email() { recipient = _user.email, subject = "Recuperação de Senha", body = body };
-                Mail.Send(email);
-                var response = Request.CreateResponse<String>(System.Net.HttpStatusCode.OK, "Uma nova senha foi encaminhada por e-mail");
-                return response;
+                    UserCommon.GetInstance().Update(_user);
+                    string body = EmailTemplate.ResetPassword(_user.username, _newPassword);
+                    Email email = new Email() { recipient = _user.email, subject = "Recuperação de Senha", body = body };
+                    Mail.Send(email);
+                    var response = Request.CreateResponse<String>(System.Net.HttpStatusCode.OK, "Uma nova senha foi encaminhada por e-mail");
+                    return response;
+                }
+                else
+                {
+                    var response = Request.CreateResponse<String>(System.Net.HttpStatusCode.OK, "O usuário está bloqueado");
+                    return response;
+                }
+                
             }
             catch
             {
@@ -92,10 +102,18 @@ namespace DL.InventoryApi.Controllers
                 if(_user != null)
                 {
                     if(_user.password.Equals(Cripto.GetHash(user.password)))
-                    {
-                        IncorrectAttempt(_user, true);
-                        var response = Request.CreateResponse<User>(System.Net.HttpStatusCode.OK, _user);
-                        return response;
+                    {   
+                        if(!_user.blocked.Equals("SIM"))
+                        {
+                            IncorrectAttempt(_user, true);
+                            var response = Request.CreateResponse<User>(System.Net.HttpStatusCode.OK, _user);
+                            return response;
+                        }
+                        else
+                        {
+                            var response = Request.CreateResponse<String>(System.Net.HttpStatusCode.OK, "Usuário bloqueado!");
+                            return response;
+                        }
                     }
                     else
                     {
@@ -125,6 +143,43 @@ namespace DL.InventoryApi.Controllers
                     return response;
                 }
 
+            }
+            catch
+            {
+                var response = Request.CreateResponse<String>(System.Net.HttpStatusCode.InternalServerError, "error");
+                return response;
+            }
+
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public HttpResponseMessage ChangePassword(User user)
+        {
+            try
+            {
+                if(!String.IsNullOrEmpty(user.password))
+                {
+                    if (Password.StrongPassword(user.password))
+                    {
+                        var _user = UserCommon.GetInstance().Get(new Inventory.Core.Model.User() { id_user = user.id_user }).FirstOrDefault();
+                        _user.password = Cripto.GetHash(user.password);
+                        _user.change_password = 0;
+                        UserCommon.GetInstance().Update(_user);
+                        var response = Request.CreateResponse<String>(System.Net.HttpStatusCode.OK, "Senha alterada");
+                        return response;
+                    }
+                    else
+                    {
+                        var response = Request.CreateResponse<String>(System.Net.HttpStatusCode.OK, "Senha fraca! Use letras maiúsculas e minusculas, caracteres especiais e números.");
+                        return response;
+                    }
+                }
+                else
+                {
+                    var response = Request.CreateResponse<String>(System.Net.HttpStatusCode.OK, "Nova senha não pode ser nula!");
+                    return response;
+                }
             }
             catch
             {
