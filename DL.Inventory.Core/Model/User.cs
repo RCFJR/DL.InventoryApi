@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 
@@ -10,15 +11,19 @@ namespace DL.Inventory.Core.Model
         [_MapperTO("ID_USER")]
         public int id_user { get; set; }
 
+        [Required]
         [_MapperTO("USERNAME")]
         public string username { get; set; }
 
+        [Required]
         [_MapperTO("EMAIL")]
         public string email { get; set; }
 
+        [Required]
         [_MapperTO("AGE")]
         public int age { get; set; }
 
+        [Required]
         [_MapperTO("LOGIN")]
         public string login { get; set; }
 

@@ -33,6 +33,9 @@
     <Reference Include="DbBase, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\db-core-base-sql-generator.2.0.0\lib\net461\DbBase.dll</HintPath>
     </Reference>
+    <Reference Include="DL.Validate, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\dev.loops.validate.2.0.0\lib\net461\DL.Validate.dll</HintPath>
+    </Reference>
     <Reference Include="EASendMail, Version=7.6.0.2, Culture=neutral, PublicKeyToken=88adb80ecd66540b, processorArchitecture=MSIL">
       <HintPath>..\packages\EASendMail.7.6.0.2\lib\net461\EASendMail.dll</HintPath>
     </Reference>
@@ -43,6 +46,7 @@
     <Reference Include="System.Buffers, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.4.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
     </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Memory, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -96,6 +100,7 @@
     <Compile Include="Util\LogFile.cs" />
     <Compile Include="Util\Mail.cs" />
     <Compile Include="Util\Password.cs" />
+    <Compile Include="Util\Validation.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -54,16 +54,24 @@ namespace DL.InventoryApi.Controllers
         {
             try
             {
-                string _newPassword = Password.Create();
-                user.password = Cripto.GetHash(_newPassword);
-                user.change_password = 1;
+                if(Validation.Execute(user))
+                {
+                    string _newPassword = Password.Create();
+                    user.password = Cripto.GetHash(_newPassword);
+                    user.change_password = 1;
 
-                UserCommon.GetInstance().Create(user);
-                string body = EmailTemplate.NewUser(user.username, _newPassword);
-                Email email = new Email() { recipient = user.email, subject = "Cadastro no sistema", body = body };
-                Mail.Send(email);
-                var response = Request.CreateResponse<String>(System.Net.HttpStatusCode.OK, "Usuário cadastrado, uma senha de acesso foi enviada por e-mail");
-                return response;
+                    UserCommon.GetInstance().Create(user);
+                    string body = EmailTemplate.NewUser(user.username, _newPassword);
+                    Email email = new Email() { recipient = user.email, subject = "Cadastro no sistema", body = body };
+                    Mail.Send(email);
+                    var response = Request.CreateResponse<String>(System.Net.HttpStatusCode.OK, "Usuário cadastrado, uma senha de acesso foi enviada por e-mail");
+                    return response;
+                }
+                else
+                {
+                    var response = Request.CreateResponse<String>(System.Net.HttpStatusCode.OK, "Preencha todas as informações.");
+                    return response;
+                }
             }
             catch
             {
