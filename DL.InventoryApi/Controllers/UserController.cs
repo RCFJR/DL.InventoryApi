@@ -5,12 +5,12 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using DL.Inventory.Core;
-using DL.Inventory.Core.Data;
-using DL.Inventory.Core.Model;
-using DL.Inventory.Core.Util;
+using DL.Core;
+using DL.Core.Data;
+using DL.Core.Model;
+using DL.Core.Util;
 
-namespace DL.InventoryApi.Controllers
+namespace DL.Api.Controllers
 {
     public class UserController : ApiController
     {

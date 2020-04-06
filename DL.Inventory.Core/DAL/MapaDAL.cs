@@ -4,7 +4,7 @@ using System.Linq;
 using System.Data;
 using System.Reflection;
 
-namespace DL.Inventory.Core.DAL
+namespace DL.Core.DAL
 {
     public static class MapaDAL<T> where T : new()
     {

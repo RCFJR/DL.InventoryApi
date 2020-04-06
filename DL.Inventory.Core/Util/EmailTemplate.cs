@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace DL.Inventory.Core.Util
+namespace DL.Core.Util
 {
     public class EmailTemplate
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace DL.Inventory.Core.Common
+namespace DL.Core.Common
 {
     public class LogFile
     {

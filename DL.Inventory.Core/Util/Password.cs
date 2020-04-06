@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace DL.Inventory.Core.Util
+namespace DL.Core.Util
 {
     public class Password
     {

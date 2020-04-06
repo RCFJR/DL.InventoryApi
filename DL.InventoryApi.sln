@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DL.InventoryApi", "DL.InventoryApi\DL.InventoryApi.csproj", "{1D8FE93C-6A79-475A-BE97-595D7435F5BF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DL.Api", "DL.InventoryApi\DL.Api.csproj", "{1D8FE93C-6A79-475A-BE97-595D7435F5BF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - Core", "0 - Core", "{56047EB6-81A9-4657-BC23-916E9A6733FA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Presentation", "1 - Presentation", "{6C2FBBF7-7CD7-4773-8F4D-CF87AA1B3CDA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DL.Inventory.Core", "DL.Inventory.Core\DL.Inventory.Core.csproj", "{2C382505-2F1E-4A48-A05B-9FDE17496F3D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DL.Core", "DL.Inventory.Core\DL.Core.csproj", "{2C382505-2F1E-4A48-A05B-9FDE17496F3D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

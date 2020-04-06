@@ -2,10 +2,10 @@
 using MySql.Data.MySqlClient;
 using System.Collections.Generic;
 using System;
-using DL.Inventory.Core.Model;
-using DL.Inventory.Core.Common;
+using DL.Core.Model;
+using DL.Core.Common;
 
-namespace DL.Inventory.Core.DAL
+namespace DL.Core.DAL
 {
     public class ConMySqlDAL<T> : BaseDAL<T> where T : new()
     {

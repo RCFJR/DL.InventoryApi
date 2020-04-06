@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace DL.InventoryApi
+namespace DL.Api
 {
     public class BundleConfig
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Configuration;
 
-namespace DL.Inventory.Core.Common
+namespace DL.Core.Common
 {
     /* Classe padrão para coletar parâmetros fixos
      * dentro do arquivo Web.Config */

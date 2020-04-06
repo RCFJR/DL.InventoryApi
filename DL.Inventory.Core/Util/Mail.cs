@@ -1,5 +1,5 @@
-﻿using DL.Inventory.Core.Data;
-using DL.Inventory.Core.Model;
+﻿using DL.Core.Data;
+using DL.Core.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DL.Inventory.Core.Util
+namespace DL.Core.Util
 {
     public class Mail
     {

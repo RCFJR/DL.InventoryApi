@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 
-namespace DL.Inventory.Core.Model
+namespace DL.Core.Model
 {
     public class User
     {

@@ -1,6 +1,6 @@
-﻿using DL.Inventory.Core.Data;
-using DL.Inventory.Core.Model;
-using DL.Inventory.Core.Util;
+﻿using DL.Core.Data;
+using DL.Core.Model;
+using DL.Core.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace DL.InventoryApi.Controllers
+namespace DL.Api.Controllers
 {
     public class AuthenticateController : ApiController
     {
@@ -21,7 +21,7 @@ namespace DL.InventoryApi.Controllers
                 Device _device = DeviceCommon.GetInstance().Get(new Device() { token = device.token }).FirstOrDefault();
                 if (_device != null)
                 {
-                    User _user = UserCommon.GetInstance().Get(new Inventory.Core.Model.User() { id_user = _device.user_id }).FirstOrDefault();
+                    User _user = UserCommon.GetInstance().Get(new Core.Model.User() { id_user = _device.user_id }).FirstOrDefault();
                     var response = Request.CreateResponse<User>(System.Net.HttpStatusCode.OK, _user);
                     return response;
                 }
@@ -162,7 +162,7 @@ namespace DL.InventoryApi.Controllers
                 {
                     if (Password.StrongPassword(user.password))
                     {
-                        var _user = UserCommon.GetInstance().Get(new Inventory.Core.Model.User() { id_user = user.id_user }).FirstOrDefault();
+                        var _user = UserCommon.GetInstance().Get(new Core.Model.User() { id_user = user.id_user }).FirstOrDefault();
                         _user.password = Cripto.GetHash(user.password);
                         _user.change_password = 0;
                         UserCommon.GetInstance().Update(_user);

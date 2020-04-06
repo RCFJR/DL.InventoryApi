@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DL.Inventory.Core.Data
+namespace DL.Core.Data
 {
     public class DeviceCommon : DeviceBase
     {

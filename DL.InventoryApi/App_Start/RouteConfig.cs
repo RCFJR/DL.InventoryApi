@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace DL.InventoryApi
+namespace DL.Api
 {
     public class RouteConfig
     {

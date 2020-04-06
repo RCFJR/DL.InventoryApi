@@ -2,9 +2,9 @@
 using System.Data.SqlClient;
 using System.Collections.Generic;
 using System;
-using DL.Inventory.Core.Model;
+using DL.Core.Model;
 
-namespace DL.Inventory.Core.DAL
+namespace DL.Core.DAL
 {
     public class ConSqlServerDAL<T> : BaseDAL<T> where T : new()
     {

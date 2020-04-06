@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DL.Validate;
 
-namespace DL.Inventory.Core.Util
+namespace DL.Core.Util
 {
     public class Validation
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace DL.Inventory.Core.Model
+namespace DL.Core.Model
 {
     [AttributeUsage(AttributeTargets.Property)]
     public class _MapperTO : Attribute

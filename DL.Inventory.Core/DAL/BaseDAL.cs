@@ -2,9 +2,9 @@
 using System.Data;
 using System.Collections.Generic;
 using System.Diagnostics;
-using DL.Inventory.Core.Common;
+using DL.Core.Common;
 
-namespace DL.Inventory.Core.DAL
+namespace DL.Core.DAL
 {
     public abstract class BaseDAL<T> where T : new()
     {

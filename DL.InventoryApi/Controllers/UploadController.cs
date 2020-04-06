@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 
-namespace DL.InventoryApi.Controllers
+namespace DL.Api.Controllers
 {
     public class UploadController : ApiController
     {

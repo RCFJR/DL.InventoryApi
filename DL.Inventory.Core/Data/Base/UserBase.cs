@@ -1,10 +1,10 @@
 using System.Collections.Generic;
-using DL.Inventory.Core.Model;
+using DL.Core.Model;
 using System.Data;
-using DL.Inventory.Core.DAL;
+using DL.Core.DAL;
 using DbBase;
 
-namespace DL.Inventory.Core.Data
+namespace DL.Core.Data
 {
     ////////////////////////////////////////////
     //////// Codigo Gerado    //////////////////

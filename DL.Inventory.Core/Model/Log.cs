@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DL.Inventory.Core.Model
+namespace DL.Core.Model
 {
     public class Log
     {
